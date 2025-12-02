@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Setanta Hypnotherapy 365 Daily Cards for Healing and Growth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f3f7;
+      --card-bg: #ffffff;
+      --accent: #5c6ac4;
+      --accent-soft: #e2e6f7;
+      --text-main: #222222;
+      --text-soft: #555555;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #ffffff, var(--bg));
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 900px;
+      width: 100%;
+      padding: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      margin: 0 0 4px 0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .card-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 0 20px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 32px 28px 64px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
+      border: 1px solid #ecebf3;
+    }
+
+    .card-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .card-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--text-main);
+      padding: 0 8px;
+    }
+
+    .card-text span.quote-mark {
+      font-size: 2rem;
+      vertical-align: top;
+      color: var(--accent-soft);
+    }
+
+    .logo-holder {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.7;
+    }
+
+    .logo-holder img {
+      max-width: 56px;
+      max-height: 56px;
+      opacity: 0.7;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    button.secondary {
+      background: white;
+      color: var(--accent);
+      border: 1px solid var(--accent-soft);
+      box-shadow: none;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 9px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    button.secondary:hover {
+      background: var(--accent-soft);
+      box-shadow: none;
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+    }
+
+    .meta {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .meta a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .meta a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 24px 18px 58px;
+      }
+      .card-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Setanta Hypnotherapy</h1>
+      <p>365 Daily Cards for Healing and Growth</p>
+    </header>
+
+    <div class="card-wrapper">
+      <div class="card">
+        <div id="cardLabel" class="card-label">CARD 1 OF 365</div>
+        <div id="cardText" class="card-text">
+          <span class="quote-mark">“</span>
+          <span id="cardTextInner">Loading…</span>
+          <span class="quote-mark">”</span>
+        </div>
+        <div class="logo-holder">
+          <!-- Make sure setanta-logo.png is in the same folder as this HTML file -->
+          <img src="setanta-logo.png" alt="Setanta Hypnotherapy Logo" />
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="secondary" onclick="prevCard()">
+        ◀ Previous
+      </button>
+      <button class="secondary" onclick="todayCard()">
+        ☀ Today’s Card
+      </button>
+      <button onclick="randomCard()">
+        ✨ Random Card
+      </button>
+      <button class="secondary" onclick="nextCard()">
+        Next ▶
+      </button>
+    </div>
+
+    <div class="meta">
+      <div><strong>Tip:</strong> Use <em>?mode=day</em> or <em>?mode=random</em> at the end of the link.</div>
+      <div>Example: <code>?mode=day</code> shows today’s card first.</div>
+    </div>
+  </div>
+
+  <script>
+    // 365 original cards for:
+    // Setanta Hypnotherapy 365 Daily Cards for Healing and Growth
+
+    const cards = [
+      "You are allowed to grow at a pace that feels kind to your nervous system.",
+      "I breathe gently, and my whole body begins to soften.",
+      "You are learning to trust yourself again, one small moment at a time.",
+      "I choose to walk through today with steadiness and grace.",
+      "Your inner light has never disappeared; it simply waits for your attention.",
+      "I am becoming someone who treats myself with patience.",
+      "You are stronger than the memories that once overwhelmed you.",
+      "I welcome calm into my chest, my breath, and my mind.",
+      "Every challenge you meet deepens your wisdom.",
+      "I release the need to rush; I move forward with clarity.",
+      "You are learning to respond rather than react, and that is growth.",
+      "I allow good things to find me without force.",
+      "You carry a quiet courage that rises when needed.",
+      "I soften the tension I no longer need to hold.",
+      "Your heart knows how to heal—give it the space to remember.",
+      "I am safe to take up space exactly as I am.",
+      "You are doing the best you can with the tools you have—and they are expanding.",
+      "I choose thoughts that nourish rather than drain me.",
+      "Your presence brings calm to more people than you realise.",
+      "I trust the timing of my own growth.",
+      "You don’t need all the answers at once; one step is enough.",
+      "I allow myself to rest without guilt.",
+      "Your resilience is not loud; it is steady and loyal to you.",
+      "I am becoming more grounded every day.",
+      "You are allowed to outgrow the versions of yourself that felt small.",
+      "I welcome clarity where there was once confusion.",
+      "Your breath can return you home at any moment.",
+      "I choose peace over pressure.",
+      "You are learning to listen to the quiet wisdom within.",
+      "I release what no longer serves the person I am becoming.",
+      "Your sensitivity is a gift—an antenna for truth.",
+      "I honour my emotions without letting them define me.",
+      "You are capable of far more than your fear suggests.",
+      "I trust myself to handle this day with calm confidence.",
+      "Your healing is not linear, but it is unfolding perfectly.",
+      "I allow my mind to slow down and return to the present.",
+      "You are not behind; you are on your path.",
+      "I deserve the kindness I so easily give to others.",
+      "Your intuition has guided you through more than you give it credit for.",
+      "I choose to believe in the possibility of good things.",
+      "You can begin again at any moment. Even now.",
+      "I welcome gentle transformation into my life.",
+      "Your past does not get to write your future.",
+      "I am learning to feel safe in my own body.",
+      "You are carried by strengths you don’t always see.",
+      "I let myself expand beyond old limitations.",
+      "Your patience with yourself is a form of love.",
+      "I honour the small wins—they build my new reality.",
+      "You are allowed to take breaks without losing momentum.",
+      "I choose compassion over judgement.",
+      "Your mind is not your enemy; it simply needs gentleness.",
+      "I am open to receiving support in all its forms.",
+      "You deserve to feel safe in your own presence.",
+      "I can handle life one breath at a time.",
+      "Your worth is not something you earn; it is something you remember.",
+      "I bring awareness to this moment and find calm here.",
+      "You are guided in ways you will understand later.",
+      "I trust that clarity arrives when I am ready for it.",
+      "Your heart is learning to open without fear.",
+      "I welcome the lessons hidden in discomfort.",
+      "You are more capable than your doubts suggest.",
+      "I choose progress, not perfection.",
+      "Your inner peace grows when you protect your energy.",
+      "I allow life to unfold without forcing outcomes.",
+      "You have survived every difficult day—you are not fragile.",
+      "I am learning to soothe myself with kindness.",
+      "Your presence is a quiet strength in the world.",
+      "I trust myself to rise after every fall.",
+      "You deserve the same patience you offer others.",
+      "I breathe deeply and return to my centre.",
+      "Your growth is happening even when you don’t notice it.",
+      "I choose to let go of what drains my spirit.",
+      "You are learning to move from fear into understanding.",
+      "I am safe to expand beyond my old story.",
+      "Your heart is stronger than the wounds it carries.",
+      "I choose to nourish the thoughts that lift me.",
+      "You are connected to something greater than any challenge.",
+      "I honour my journey, even the parts that were difficult.",
+      "Your calm is your superpower.",
+      "I return to stillness and find clarity waiting for me.",
+      "You are allowed to take up emotional and spiritual space.",
+      "I embrace the version of me that is emerging.",
+      "Your intuition is a compass—quiet, but accurate.",
+      "I am learning to trust myself fully.",
+      "You bring healing energy into the world simply by being here.",
+      "I choose to walk gently through this day.",
+      "Your emotions are messengers, not threats.",
+      "I allow new possibilities to enter my life.",
+      "You have not lost your way; you are simply learning the terrain.",
+      "I am restoring my strength, one peaceful moment at a time.",
+      "You are learning to trust the rhythm of your life.",
+      "I soften my expectations and allow myself to simply be.",
+      "Your strength grows when you stop fighting yourself.",
+      "I breathe into the parts of me that need gentleness.",
+      "You are not meant to carry everything alone.",
+      "I choose courage over avoidance today.",
+      "Your story is still unfolding; beautiful chapters await.",
+      "I allow healing to reach places I once protected.",
+      "You are exactly where you need to be to learn the next lesson.",
+      "I trust the quiet shifts happening within me.",
+      "Your calm is contagious; it affects every room you enter.",
+      "I release the urge to prove myself.",
+      "You are not failing—you are refining.",
+      "I choose to nourish my mind with kind thoughts.",
+      "Your inner strength has carried you through storms you once feared.",
+      "I honour the pace at which my heart heals.",
+      "You deserve relationships that feel safe and warm.",
+      "I am worthy of receiving love that supports me.",
+      "You are learning to let go without losing yourself.",
+      "I trust that life is guiding me toward what I need.",
+      "Your intuition is wiser than your worries.",
+      "I allow myself to enjoy moments of peace.",
+      "You are transforming even in moments of stillness.",
+      "I choose to breathe deeply and return to myself.",
+      "Your boundaries are acts of self-respect.",
+      "I speak to myself with compassion and understanding.",
+      "You are worthy of all the space you need to grow.",
+      "I am learning to stay present with myself.",
+      "Your light becomes clearer every time you honour your truth.",
+      "I release the weight of yesterday.",
+      "You are allowed to rest before you rise.",
+      "I choose thoughts that make me feel safe and supported.",
+      "Your soul has carried wisdom across every chapter of your life.",
+      "I am open to seeing beauty in unexpected places.",
+      "You are not alone on this journey; guidance surrounds you.",
+      "I trust my inner voice—it always knows the way.",
+      "Your healing opens pathways for others to heal too.",
+      "I allow peace to settle into my body.",
+      "You are learning to release what was never yours to hold.",
+      "I choose to treat myself like someone I care about.",
+      "Your heart knows how to rise, even when tired.",
+      "I am growing into the person I once hoped to become.",
+      "You are not broken; you are becoming.",
+      "I choose patience over self-judgement.",
+      "Your presence matters more than your productivity.",
+      "I allow myself to move gently today.",
+      "You are allowed to want more from life while loving what you have.",
+      "I trust that everything is unfolding for my highest good.",
+      "Your authenticity is a gift.",
+      "I soften into the truth that I am enough.",
+      "You are learning to hold your own hand through difficult moments.",
+      "I release the story that I must do everything perfectly.",
+      "You carry a quiet bravery that guides your steps.",
+      "I give myself permission to experience joy.",
+      "Your dreams matter, even if others don’t understand them.",
+      "I trust the direction my heart pulls me toward.",
+      "You are braver now than you have ever been.",
+      "I allow myself to grow beyond what I once believed was possible.",
+      "Your inner peace is more powerful than external chaos.",
+      "I choose to rest without guilt or apology.",
+      "You are allowed to release the roles that no longer fit you.",
+      "I trust myself to make choices that honour my wellbeing.",
+      "Your courage is found not in force, but in gentleness.",
+      "I am learning to listen to the wisdom of my body.",
+      "You are more resilient than your fears acknowledge.",
+      "I welcome moments of stillness as nourishment.",
+      "Your clarity grows as your mind quiets.",
+      "I choose to let go of resistance and soften into flow.",
+      "You are becoming someone who walks with intention.",
+      "I trust the process of becoming.",
+      "Your sensitivity is not a weakness—it is a depth.",
+      "I am safe to release what is heavy.",
+      "You are stronger for the battles you never spoke about.",
+      "I choose to forgive myself for past versions of me.",
+      "Your truth is a compass—never ignore it.",
+      "I allow myself to feel without fear.",
+      "You are not defined by how others once saw you.",
+      "I breathe into my heart and feel it soften.",
+      "Your presence brings meaning into the lives of others.",
+      "I choose to honour my needs without apology.",
+      "You are capable of transforming your life in quiet, consistent ways.",
+      "I welcome clarity into the spaces where confusion once lived.",
+      "Your peace begins the moment you stop fighting yourself.",
+      "I am growing into someone I respect and trust.",
+      "You are learning to navigate life with more softness than before.",
+      "I choose to recognise my own progress.",
+      "Your heart is opening in ways you once thought impossible.",
+      "I trust myself to take the next step, even if it is small.",
+      "You are becoming the person your future self will thank.",
+      "I allow warmth and compassion to guide my actions.",
+      "You are allowed to expand beyond what once felt safe but limiting.",
+      "I trust that my heart knows when to hold on and when to let go.",
+      "Your kindness is a reflection of your strength, not your weakness.",
+      "I allow my inner voice to be louder than my fear.",
+      "You are walking a path that only you can walk—and you are walking it well.",
+      "I welcome the calm that arrives when I stop resisting.",
+      "Your inner world deserves the same care you offer the outer world.",
+      "I am learning to befriend the parts of me I once avoided.",
+      "You are evolving into someone more honest, more grounded, more whole.",
+      "I choose to respond with clarity rather than habit.",
+      "Your presence holds more impact than you realise.",
+      "I allow softness to be my strength today.",
+      "You are allowed to change direction without explanation.",
+      "I breathe deeply and reconnect to my centre.",
+      "Your healing is not a destination—it is a relationship with yourself.",
+      "I honour the wisdom that grows from my challenges.",
+      "You are learning to live from your truth, not your fear.",
+      "I choose compassion when self-criticism appears.",
+      "Your courage is found in every gentle step you take.",
+      "I allow myself to grow at the pace that feels right for me.",
+      "You are shedding layers that no longer belong to who you are becoming.",
+      "I trust that I am guided in ways I cannot always see.",
+      "Your intuition speaks in whispers—listen closely.",
+      "I am safe to rest, release, and realign.",
+      "You bring light into places that once felt heavy.",
+      "I choose thoughts that support my healing.",
+      "Your experiences have shaped you, but they do not define you.",
+      "I allow new perspectives to enter my mind.",
+      "You are learning to honour your needs without guilt.",
+      "I trust the unfolding of my life.",
+      "Your presence is capable of calming storms—within and around you.",
+      "I give myself permission to grow beyond my past.",
+      "You are worthy of love that doesn’t require shrinking.",
+      "I release the tension that comes from trying to control everything.",
+      "Your heart carries a wisdom older than your fear.",
+      "I choose to nurture my inner peace.",
+      "You are not behind; you are building something real and lasting.",
+      "I honour my emotions without letting them overwhelm me.",
+      "Your truth deserves your own respect.",
+      "I choose curiosity over judgement.",
+      "You are allowed to say no without guilt.",
+      "I trust in the timing of my healing.",
+      "Your sensitivity gives you access to deeper understanding.",
+      "I choose to be kind to myself as I grow.",
+      "You carry an inner strength that rises quietly, but powerfully.",
+      "I allow joy to find me today.",
+      "You are moving toward a future that aligns with your soul.",
+      "I trust that peace is always accessible to me.",
+      "Your worth does not depend on productivity or perfection.",
+      "I am learning to honour my needs with clarity and confidence.",
+      "You are capable of rewriting your life from the inside out.",
+      "I allow myself to feel grounded and supported.",
+      "Your healing creates space for others to heal too.",
+      "I embrace the person I am becoming.",
+      "You are stronger than the thoughts that try to discourage you.",
+      "I release the stories that no longer serve my growth.",
+      "Your courage grows each time you choose honesty with yourself.",
+      "I trust the expansion happening within me.",
+      "You are guided by a deeper wisdom than you realise.",
+      "I choose to stay open to life’s possibilities.",
+      "Your presence brings warmth into the world.",
+      "I allow my heart to feel supported.",
+      "You are creating a life that feels more like you.",
+      "I listen for the small signs that guide my path.",
+      "Your resilience has carried you through storms and into growth.",
+      "I choose to nourish my mind with gentle thoughts.",
+      "You are allowed to rest without offering explanations.",
+      "I trust myself to move through discomfort with grace.",
+      "Your worth is inherent—nothing can take it away.",
+      "I honour the quiet progress I make each day.",
+      "You are allowed to take your time with healing.",
+      "I release the idea that I must be strong all the time.",
+      "Your inner wisdom deepens each time you listen inwardly.",
+      "I allow peace to fill the spaces where anxiety once lived.",
+      "You are allowed to choose what supports your wellbeing.",
+      "I trust in my ability to adapt and grow.",
+      "Your heart is learning what safety feels like.",
+      "I allow myself to step into new versions of me.",
+      "You are not too much; you are exactly enough.",
+      "I breathe deeply and reconnect to calm.",
+      "Your perspective expands as you release fear.",
+      "I choose thoughts that soothe and support me.",
+      "You are braver than you often acknowledge.",
+      "I honour my boundaries as acts of self-love.",
+      "Your path may be winding, but it is meaningful.",
+      "I allow myself to trust the journey, even without knowing the outcome.",
+      "You are learning to stand in your truth with grace.",
+      "I choose to bring attention back to my breath.",
+      "Your growth shines through in the way you treat yourself.",
+      "I welcome transformation with an open heart.",
+      "You are learning to honour the quiet shifts happening within you.",
+      "I choose to let go of the pressure to have everything figured out.",
+      "Your heart knows the way long before your mind understands.",
+      "I trust myself to move through today with intention.",
+      "You are supported in more ways than you can see.",
+      "I allow presence to guide me back home to myself.",
+      "Your healing is creating space for a brighter future.",
+      "I release the tension in my shoulders, jaw, and thoughts.",
+      "You are worthy of peace, love, and belonging.",
+      "I trust the timing of my breakthroughs.",
+      "Your courage shows every time you choose honesty over fear.",
+      "I allow myself to experience joy without hesitation.",
+      "You have not lost your way—you are exploring new paths.",
+      "I choose to return to calm whenever I feel overwhelmed.",
+      "Your journey is unique and deserves patience.",
+      "I honour my progress, even when it feels slow.",
+      "You are learning to soften without collapsing.",
+      "I trust that clarity will come when I am ready to receive it.",
+      "Your presence brings comfort to those who feel unseen.",
+      "I allow myself to rest into what feels true for me.",
+      "You are rewriting old patterns with every hopeful choice.",
+      "I breathe deeply and let peace expand within me.",
+      "Your story carries meaning, even in the parts you outgrew.",
+      "I choose to let my thoughts settle like dust returning to the earth.",
+      "You are learning to separate who you are from what you’ve been through.",
+      "I trust the unfolding of my inner transformation.",
+      "Your healing is guided by a deeper intelligence within you.",
+      "I choose self-compassion as my default response.",
+      "You are allowed to feel proud of yourself.",
+      "I honour the small acts of courage I take each day.",
+      "Your energy is shifting into alignment with your truth.",
+      "I trust myself to move forward with sincerity.",
+      "You deserve to feel safe in your own presence.",
+      "I choose to release what keeps me small.",
+      "Your resilience is rooted in love.",
+      "I am learning to live from a place of calm strength.",
+      "You have permission to evolve gently.",
+      "I choose to witness my emotions without judging them.",
+      "Your healing lights the way for others.",
+      "I breathe and come back to this moment.",
+      "You are creating a life that honours your inner truth.",
+      "I am willing to see myself with kinder eyes.",
+      "Your soul knows when it is time for change.",
+      "I trust my ability to adapt with grace.",
+      "You are exactly enough, exactly as you are.",
+      "I release what no longer aligns with who I’m becoming.",
+      "Your intuition becomes clearer each time you listen.",
+      "I choose gentleness over self-pressure.",
+      "You are allowed to shine without shrinking.",
+      "I honour the wisdom that lives within me.",
+      "Your heart is learning what safety truly feels like.",
+      "I trust the unfolding of my healing process.",
+      "You are worthy of a life that feels good from the inside.",
+      "I allow myself to feel grounded and supported today.",
+      "Your progress is real, even when it is quiet.",
+      "I choose to release the narratives that hold me back.",
+      "You are becoming someone who feels like home.",
+      "I walk forward with calm confidence.",
+      "Your healing is not a race; it is a return.",
+      "I let myself soften into acceptance.",
+      "You are stronger than your doubts allow you to believe.",
+      "I allow clarity to replace confusion gently.",
+      "Your presence is a light in the world.",
+      "I choose to live with intention and compassion.",
+      "You are allowed to be both healing and whole at the same time.",
+      "I trust myself to navigate my life with courage.",
+      "Your heart expands each time you listen to it.",
+      "I allow peace to guide my decisions.",
+      "You bring meaning to places that once felt empty.",
+      "I choose to be gentle with my expectations.",
+      "Your path is uniquely yours—walk it with pride.",
+      "I release the urge to compare my journey to others.",
+      "You are learning to rest without guilt.",
+      "I welcome calm energy into my body.",
+      "Your presence matters deeply.",
+      "I allow myself to grow into the fullest version of me.",
+      "You are becoming stronger in ways you cannot yet see.",
+      "I choose to breathe deeply and begin again.",
+      "Your inner peace is returning, one moment at a time.",
+      "I honour the wisdom gained from every experience.",
+      "You are guided more than you realise.",
+      "I trust my intuition to lead me forward.",
+      "Your healing brings more light into the world.",
+      "I release fear and welcome clarity.",
+      "You are allowed to take up space in your own life.",
+      "I choose thoughts that help me grow.",
+      "Your heart is wiser and softer than you know.",
+      "I trust myself to navigate this day with presence.",
+      "You are learning to create a life you don’t need to escape from.",
+      "I honour the strength that lives quietly within me.",
+      "You are guided toward people and experiences that match your growth.",
+      "I choose to see the good that surrounds me.",
+      "Your presence is a calm force in the world.",
+      "I allow myself to expand into possibility.",
+      "You are becoming the most authentic version of yourself—and that is enough."
+    ];
+
+    function getDayOfYearIndex() {
+      const today = new Date();
+      const start = new Date(today.getFullYear(), 0, 1);
+      const diff = today - start;
+      const oneDay = 1000 * 60 * 60 * 24;
+      let dayOfYear = Math.floor(diff / oneDay); // 0-based
+      if (dayOfYear < 0) dayOfYear = 0;
+      if (dayOfYear >= cards.length) dayOfYear = cards.length - 1;
+      return dayOfYear;
+    }
+
+    function getInitialIndex() {
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode");
+
+      if (mode === "day") {
+        return getDayOfYearIndex();
+      }
+      if (mode === "random") {
+        return Math.floor(Math.random() * cards.length);
+      }
+      return 0; // start at Card 1 by default
+    }
+
+    let currentIndex = getInitialIndex();
+
+    function renderCard(index) {
+      const text = cards[index];
+      const label = document.getElementById("cardLabel");
+      const inner = document.getElementById("cardTextInner");
+
+      label.textContent = `CARD ${index + 1} OF ${cards.length}`;
+      inner.textContent = text;
+    }
+
+    function prevCard() {
+      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+      renderCard(currentIndex);
+    }
+
+    function nextCard() {
+      currentIndex = (currentIndex + 1) % cards.length;
+      renderCard(currentIndex);
+    }
+
+    function randomCard() {
+      let next = Math.floor(Math.random() * cards.length);
+      if (next === currentIndex && cards.length > 1) {
+        next = (next + 1) % cards.length;
+      }
+      currentIndex = next;
+      renderCard(currentIndex);
+    }
+
+    function todayCard() {
+      currentIndex = getDayOfYearIndex();
+      renderCard(currentIndex);
+    }
+
+    // Keyboard shortcuts: left, right, space, R, T
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        nextCard();
+      } else if (e.key === "ArrowLeft") {
+        prevCard();
+      } else if (e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        randomCard();
+      } else if (e.key.toLowerCase() === "r") {
+        randomCard();
+      } else if (e.key.toLowerCase() === "t") {
+        todayCard();
+      }
+    });
+
+    // Initial render
+    renderCard(currentIndex);
+  </script>
+</body>
+</html>
