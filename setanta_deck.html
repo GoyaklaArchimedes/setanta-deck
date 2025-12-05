@@ -8,10 +8,13 @@
     :root {
   --bg: #f5f3f7;
   --card-bg: #ffffff;
-  --accent: #4ca585;       /* green */
-  --accent-soft: #d3efe4;
+  /* Setanta green accent */
+  --accent: #1f8c5d;
+  --accent-soft: #d4efe3;
   --text-main: #222222;
   --text-soft: #555555;
+}
+
 
     * {
       box-sizing: border-box;
@@ -41,12 +44,13 @@
     }
 
     header h1 {
-      font-size: 1.6rem;
-      margin: 0 0 4px 0;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
+  font-size: 1.3rem;
+  margin: 0 0 2px 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 
     header p {
       margin: 0;
@@ -73,13 +77,21 @@
   overflow: hidden;
 }
 .card-hero {
-  background: linear-gradient(to bottom, #cfe9ff 0%, #cfe9ff 55%, #7ec66b 55%, #6ab45b 100%);
+  background: linear-gradient(
+    to bottom,
+    #dff0ff 0%,
+    #dff0ff 70%,
+    #7ecf77 70%,
+    #65b760 100%
+  );
   padding: 40px 24px;
   border-radius: 18px 18px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 150px;
 }
+
 
     .card-label {
   font-size: 0.8rem;
@@ -92,13 +104,12 @@
 
     }
 
-    .card-text {
-  font-size: 1.4rem;
+   .card-text {
+  font-size: 1.5rem;
   line-height: 1.3;
   text-align: center;
-  color: #111111; /* strong, clear text like the example */
-  max-width: 80%;
-  margin: 0 auto;
+  color: #111111;
+  padding: 0 8px;
   font-weight: 700;
 }
 
