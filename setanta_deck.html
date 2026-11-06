@@ -667,7 +667,16 @@
 
       label.textContent = `CARD ${index + 1} OF ${cards.length}`;
       inner.textContent = text;
+      reportHeight();
     }
+
+    // In embedded mode, tell the host page how tall the deck is
+    function reportHeight() {
+      if (!document.body.classList.contains("embed") || window.parent === window) return;
+      const h = document.querySelector(".app").getBoundingClientRect().height;
+      window.parent.postMessage({ setantaDeckHeight: Math.ceil(h) + 4 }, "*");
+    }
+    window.addEventListener("resize", reportHeight);
 
     function prevCard() {
       currentIndex = (currentIndex - 1 + cards.length) % cards.length;
