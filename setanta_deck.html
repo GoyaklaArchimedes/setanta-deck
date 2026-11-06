@@ -193,6 +193,12 @@
       text-decoration: underline;
     }
 
+    /* Embedded mode (?embed=1): used inside setantahypnotherapy.com */
+    body.embed { background: transparent; min-height: 0; display: block; }
+    body.embed header, body.embed .meta { display: none; }
+    body.embed .app { padding: 4px 8px 8px; margin: 0 auto; }
+    body.embed .card-wrapper { padding: 8px 0 18px; }
+
     @media (max-width: 600px) {
       .card {
         padding: 0 0 14px;
@@ -646,6 +652,10 @@
         return Math.floor(Math.random() * cards.length);
       }
       return 0; // start at Card 1 by default
+    }
+
+    if (new URLSearchParams(window.location.search).get("embed") === "1") {
+      document.body.classList.add("embed");
     }
 
     let currentIndex = getInitialIndex();
